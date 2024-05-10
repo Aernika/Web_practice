@@ -41,8 +41,23 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 
     <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            const input = document.querySelector('.js-input');
+            const nameSpan = document.querySelector('.js-name');
 
+            const savedName = Cookies.get('name');
+            if (savedName) {
+                nameSpan.textContent = savedName;
+            }
 
+            document.querySelector('.js-button').addEventListener('click', function() {
+                const name = input.value.trim();
+                if (name) {
+                    Cookies.set('name', name, { expires: 3 });
+                    nameSpan.textContent = name;
+                }
+            });
+        });
     </script>
 </body>
 </html>
